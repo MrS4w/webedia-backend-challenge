@@ -1,22 +1,34 @@
 package com.blog.webedia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Comentario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Autor autor;
 	private String comentario;
+
+	@ManyToMany(mappedBy = "comentarios")
+	List<Artigo> artigos = new ArrayList<>();
 
 	public Comentario() {
 
 	}
 
-	public Comentario(Integer id, Autor autor, String comentario) {
+	public Comentario(Integer id, String comentario) {
 		super();
 		this.id = id;
-		this.autor = autor;
 		this.comentario = comentario;
 	}
 
@@ -28,20 +40,20 @@ public class Comentario implements Serializable {
 		this.id = id;
 	}
 
-	public Autor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
-	}
-
 	public String getComentario() {
 		return comentario;
 	}
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public List<Artigo> getArtigos() {
+		return artigos;
+	}
+
+	public void setArtigos(List<Artigo> artigos) {
+		this.artigos = artigos;
 	}
 
 	@Override

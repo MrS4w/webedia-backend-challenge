@@ -1,11 +1,14 @@
 package com.blog.webedia.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import java.io.Serializable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Autor implements Serializable {
@@ -16,6 +19,9 @@ public class Autor implements Serializable {
 	private Integer id;
 
 	private String nome;
+
+	@ManyToMany(mappedBy="autores")
+	List<Artigo> artigos = new ArrayList<>();
 
 	public Autor() {
 
@@ -41,6 +47,14 @@ public class Autor implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Artigo> getArtigos() {
+		return artigos;
+	}
+
+	public void setArtigos(List<Artigo> artigos) {
+		this.artigos = artigos;
 	}
 
 	@Override

@@ -26,6 +26,7 @@ public class ApiApplication implements CommandLineRunner {
 		Autor a2 = new Autor(null, "Autor 2");
 		Autor a3 = new Autor(null, "Autor 3");
 
+		
 		autorRepository.save(Arrays.asList(a1, a2, a3));
 	}
 }

@@ -1,25 +1,46 @@
 package com.blog.webedia.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Artigo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	private String titulo;
 	private String subtitulo;
 	private Date dataPublicacao;
 	private Date ultimaAtualizacao;
 	private String conteudo;
-	private String permalink;
+
+	@ManyToMany
+	@JoinTable(name = "ARTIGO_AUTOR", joinColumns = @JoinColumn(name = "artigo_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
+	List<Autor> autores = new ArrayList<>();
+
+	@ManyToMany
+	@JoinTable(name = "ARTIGO_COMENTARIO", joinColumns = @JoinColumn(name = "artigo_id"), inverseJoinColumns = @JoinColumn(name = "comentario_id"))
+	List<Comentario> comentarios = new ArrayList<>();
 
 	public Artigo() {
 
 	}
 
 	public Artigo(Integer id, String titulo, String subtitulo, Date dataPublicacao, Date ultimaAtualizacao,
-			String conteudo, Autor autor, String permalink) {
+			String conteudo) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -27,7 +48,6 @@ public class Artigo implements Serializable {
 		this.dataPublicacao = dataPublicacao;
 		this.ultimaAtualizacao = ultimaAtualizacao;
 		this.conteudo = conteudo;
-		this.permalink = permalink;
 	}
 
 	public Integer getId() {
@@ -78,12 +98,20 @@ public class Artigo implements Serializable {
 		this.conteudo = conteudo;
 	}
 
-	public String getPermalink() {
-		return permalink;
+	public List<Autor> getAutores() {
+		return autores;
 	}
 
-	public void setPermalink(String permalink) {
-		this.permalink = permalink;
+	public void setAutores(List<Autor> autores) {
+		this.autores = autores;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
 	}
 
 	@Override
@@ -91,7 +119,6 @@ public class Artigo implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((permalink == null) ? 0 : permalink.hashCode());
 		return result;
 	}
 
@@ -108,11 +135,6 @@ public class Artigo implements Serializable {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (permalink == null) {
-			if (other.permalink != null)
-				return false;
-		} else if (!permalink.equals(other.permalink))
 			return false;
 		return true;
 	}
