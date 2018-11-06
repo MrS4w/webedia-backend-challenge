@@ -20,4 +20,9 @@ public class AutorService {
 		}
 		return obj;
 	}
+
+	public Autor insert(Autor obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 }
