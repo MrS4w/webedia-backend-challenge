@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Artigo implements Serializable {
@@ -29,14 +28,14 @@ public class Artigo implements Serializable {
 	private Date ultimaAtualizacao;
 	private String conteudo;
 
-	@JsonBackReference
-	@ManyToMany
-	@JoinTable(name = "ARTIGO_AUTOR", joinColumns = @JoinColumn(name = "artigo_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "artigos")
+	@Column(nullable = false)
 	List<Autor> autores = new ArrayList<>();
 
-	@JsonBackReference
-	@ManyToMany
-	@JoinTable(name = "ARTIGO_COMENTARIO", joinColumns = @JoinColumn(name = "artigo_id"), inverseJoinColumns = @JoinColumn(name = "comentario_id"))
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "artigos")
+	@Column(nullable = false)
 	List<Comentario> comentarios = new ArrayList<>();
 
 	public Artigo() {

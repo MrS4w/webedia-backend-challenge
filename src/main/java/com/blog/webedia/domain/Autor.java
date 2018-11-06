@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Autor implements Serializable {
@@ -22,8 +24,11 @@ public class Autor implements Serializable {
 
 	private String nome;
 	
-	@JsonManagedReference
-	@ManyToMany(mappedBy="autores")
+	
+	
+	@JsonBackReference
+	@ManyToMany
+	@JoinTable(name = "ARTIGO_AUTOR", joinColumns = @JoinColumn(name = "autor_id"), inverseJoinColumns = @JoinColumn(name = "artigo_id"))
 	List<Artigo> artigos = new ArrayList<>();
 
 	public Autor() {

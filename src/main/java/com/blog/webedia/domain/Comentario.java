@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Comentario implements Serializable {
@@ -21,8 +23,10 @@ public class Comentario implements Serializable {
 	private Integer id;
 	private String comentario;
 
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "comentarios")
+	@JsonBackReference
+	@ManyToMany
+	@JoinTable(name = "ARTIGO_COMENTARIO", joinColumns = @JoinColumn(name = "comentario_id"), inverseJoinColumns = @JoinColumn(name = "artigo_id"))
+	
 	List<Artigo> artigos = new ArrayList<>();
 
 	public Comentario() {

@@ -10,8 +10,8 @@ import com.blog.webedia.services.exception.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest quest){
+	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest quest) {
 		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
 }
