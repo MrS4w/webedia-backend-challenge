@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Autor implements Serializable {
@@ -23,10 +23,8 @@ public class Autor implements Serializable {
 	private Integer id;
 
 	private String nome;
-	
-	
-	
-	@JsonBackReference
+
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "ARTIGO_AUTOR", joinColumns = @JoinColumn(name = "autor_id"), inverseJoinColumns = @JoinColumn(name = "artigo_id"))
 	List<Artigo> artigos = new ArrayList<>();

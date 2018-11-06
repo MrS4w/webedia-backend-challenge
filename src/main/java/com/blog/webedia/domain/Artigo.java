@@ -12,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Artigo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -28,12 +26,10 @@ public class Artigo implements Serializable {
 	private Date ultimaAtualizacao;
 	private String conteudo;
 
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "artigos")
 	@Column(nullable = false)
 	List<Autor> autores = new ArrayList<>();
 
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "artigos")
 	@Column(nullable = false)
 	List<Comentario> comentarios = new ArrayList<>();

@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Comentario implements Serializable {
@@ -23,10 +23,10 @@ public class Comentario implements Serializable {
 	private Integer id;
 	private String comentario;
 
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "ARTIGO_COMENTARIO", joinColumns = @JoinColumn(name = "comentario_id"), inverseJoinColumns = @JoinColumn(name = "artigo_id"))
-	
+
 	List<Artigo> artigos = new ArrayList<>();
 
 	public Comentario() {
