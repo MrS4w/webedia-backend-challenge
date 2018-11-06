@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Artigo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -27,10 +29,12 @@ public class Artigo implements Serializable {
 	private Date ultimaAtualizacao;
 	private String conteudo;
 
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "ARTIGO_AUTOR", joinColumns = @JoinColumn(name = "artigo_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
 	List<Autor> autores = new ArrayList<>();
 
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(name = "ARTIGO_COMENTARIO", joinColumns = @JoinColumn(name = "artigo_id"), inverseJoinColumns = @JoinColumn(name = "comentario_id"))
 	List<Comentario> comentarios = new ArrayList<>();

@@ -17,7 +17,7 @@ public class AutorResource {
 	@Autowired
 	private AutorService service;
 
-	@RequestMapping(value = "/artigo{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/autor{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 
 		Autor obj = service.buscar(id);

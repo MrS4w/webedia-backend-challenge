@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Comentario implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +21,7 @@ public class Comentario implements Serializable {
 	private Integer id;
 	private String comentario;
 
+	@JsonManagedReference
 	@ManyToMany(mappedBy = "comentarios")
 	List<Artigo> artigos = new ArrayList<>();
 
