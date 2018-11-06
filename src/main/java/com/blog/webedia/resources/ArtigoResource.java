@@ -18,9 +18,9 @@ public class ArtigoResource {
 	private ArtigoService service;
 
 	@RequestMapping(value = "/artigo{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Artigo> find(@PathVariable Integer id) {
 
-		Artigo obj = service.buscar(id);
+		Artigo obj = service.find(id);
 
 		return ResponseEntity.ok().body(obj);
 	}

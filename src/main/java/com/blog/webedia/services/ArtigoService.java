@@ -12,7 +12,7 @@ public class ArtigoService {
 	@Autowired
 	private ArtigoRepository repo;
 
-	public Artigo buscar(Integer id) {
+	public Artigo find(Integer id) {
 		Artigo obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException(

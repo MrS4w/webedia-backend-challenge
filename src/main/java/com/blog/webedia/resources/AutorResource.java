@@ -22,9 +22,9 @@ public class AutorResource {
 	private AutorService service;
 
 	@RequestMapping(value = "/autor{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Autor> find(@PathVariable Integer id) {
 
-		Autor obj = service.buscar(id);
+		Autor obj = service.find(id);
 
 		return ResponseEntity.ok().body(obj);
 	}
@@ -35,5 +35,12 @@ public class AutorResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/autor{id}").buildAndExpand(obj.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+
+	@RequestMapping(value = "/autor{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Autor obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

@@ -12,7 +12,7 @@ public class ComentarioService {
 	@Autowired
 	private ComentarioRepository repo;
 
-	public Comentario buscar(Integer id) {
+	public Comentario find(Integer id) {
 		Comentario obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException(

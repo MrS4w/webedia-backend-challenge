@@ -12,7 +12,7 @@ public class AutorService {
 	@Autowired
 	private AutorRepository repo;
 
-	public Autor buscar(Integer id) {
+	public Autor find(Integer id) {
 		Autor obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException(
@@ -23,6 +23,11 @@ public class AutorService {
 
 	public Autor insert(Autor obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Autor update(Autor obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 }

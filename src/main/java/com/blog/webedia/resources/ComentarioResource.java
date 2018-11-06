@@ -18,9 +18,9 @@ public class ComentarioResource {
 	private ComentarioService service;
 
 	@RequestMapping(value = "/comentario{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	public ResponseEntity<Comentario> find(@PathVariable Integer id) {
 
-		Comentario obj = service.buscar(id);
+		Comentario obj = service.find(id);
 
 		return ResponseEntity.ok().body(obj);
 	}
