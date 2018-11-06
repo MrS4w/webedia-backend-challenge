@@ -16,7 +16,7 @@ public class AutorService {
 		Autor obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException(
-					"Objeto não encontrado!" + "\nId: " + id + "\nTipo: " + Autor.class.getName());
+					"Objeto não encontrado!" + " Id: " + id + " Tipo: " + Autor.class.getName());
 		}
 		return obj;
 	}
@@ -25,9 +25,14 @@ public class AutorService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-	
+
 	public Autor update(Autor obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		repo.delete(id);
 	}
 }
