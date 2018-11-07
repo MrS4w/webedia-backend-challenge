@@ -1,5 +1,7 @@
 package com.blog.webedia.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,9 @@ public class AutorService {
 	public void delete(Integer id) {
 		find(id);
 		repo.delete(id);
+	}
+
+	public List<Autor> findAll() {
+		return repo.findAll();
 	}
 }

@@ -1,6 +1,7 @@
 package com.blog.webedia.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,7 @@ public class AutorResource {
 
 	@RequestMapping(value = "/autor{id}", method = RequestMethod.GET)
 	public ResponseEntity<Autor> find(@PathVariable Integer id) {
-
 		Autor obj = service.find(id);
-
 		return ResponseEntity.ok().body(obj);
 	}
 
@@ -48,5 +47,11 @@ public class AutorResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Autor>> findAll() {
+		List<Autor> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 }
