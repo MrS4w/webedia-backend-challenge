@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +26,10 @@ public class Artigo implements Serializable {
 	private Date ultimaAtualizacao;
 	private String conteudo;
 
-	@ManyToMany(mappedBy = "artigos")
-	@Column(nullable = false)
+	@ManyToMany(mappedBy = "artigos", cascade = CascadeType.REMOVE)
 	List<Autor> autores = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "artigos")
-	@Column(nullable = false)
+	@ManyToMany(mappedBy = "artigos", cascade = CascadeType.REMOVE)
 	List<Comentario> comentarios = new ArrayList<>();
 
 	public Artigo() {

@@ -33,7 +33,7 @@ public class ComentarioResource {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Comentario obj) {
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/autor{id}").buildAndExpand(obj.getId())
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/comentario{id}").buildAndExpand(obj.getId())
 				.toUri();
 		return ResponseEntity.created(uri).build();
 	}

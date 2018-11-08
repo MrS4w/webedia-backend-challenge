@@ -21,7 +21,7 @@ public class ComentarioService {
 		Comentario obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException(
-					"Objeto não encontrado!" + "\nId: " + id + "\nTipo: " + Comentario.class.getName());
+					"Objeto não encontrado!" + " Id: " + id + " Tipo: " + Comentario.class.getName());
 		}
 		return obj;
 	}
