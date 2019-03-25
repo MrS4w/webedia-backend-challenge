@@ -13,7 +13,7 @@ Para rodar a API você precisa ter instalado o [STS](https://spring.io/tools) e 
 _(Basta trocar "ID" pelo atributo "id" do registro ex: artigo1, autor2, comentario3, etc)_ <br/>
 ##### Exemplo de paginação com parâmentros:<br>
 <code>localhost:8080/endpoint/page?linesPerPage=2&page=1&direction=DESC</code> <br/>
-### Sumário:
+### Glossário:
 - #### _endpoint_: artigos, autores ou comentarios. <br />
 - #### _linesPerPage_: São a quantidade de resultados por página. (padrão 24) <br/>
 - #### _page_: Página que deseja visualizar. (padrão 0) <br/>
